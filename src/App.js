@@ -6,7 +6,7 @@ import TodoCreation from './Components/Sections/TodoCreation/TodoCreation';
 
 function App() {
   const [todos, updateTodos] = useState([]);
-  const [didRequestFail, setRequestStatus]= useState([false]);
+  const [error, setRequestError]= useState(false);
 
   useEffect(() => {
     getAndRenderTodos()
@@ -16,44 +16,41 @@ function App() {
     getTodos().then(response => {
       const { data } = response;
       updateTodos(data)
-      console.log(data)
+    }).catch(error => {
+      setRequestError(error)
+      alert('connection error')
     })
-    // .catch ((error) => {
-    //   setRequestStatus(error)
-    //   console.log(error)
-    // })
   }
 
   const onTodoDelete = id => {
     deleteTodo(id).then(() => {
-    getAndRenderTodos();
+      getAndRenderTodos();
+    }).catch(error => {
+      setRequestError(error)
+      alert('connection error')
     })
-    // .catch = error => {
-    //   return setRequestStatus()
-    // }
   }
 
   const addNewTask = todo => {
     addTodo(todo).then(() => {
       getAndRenderTodos();
+    }).catch(error => {
+      setRequestError(error)
+      alert('connection error')
     })
-    // .catch ((error) => {
-    //   return setRequestStatus()
-    // })
   }
 
   return (
     <main>
       <h1>Todo List</h1>
       <div className="container">
-        {/* { didRequestFail && <p error={setRequestStatus}>I  was not able to download the data this time. Please try again later.</p> }
-        { !didRequestFail && ( */}
+        { error && <p>I  was not able to download the data this time. Please try again later.</p> }
+        { !error && (
           <>
             <TodoCreation addNewTask={addNewTask}></TodoCreation>
             <TodoList todos={todos} onTodoDelete={onTodoDelete}></TodoList>
           </>
-        {/* ) */}
-        }
+        )}
       </div>
     </main>
   )

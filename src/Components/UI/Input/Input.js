@@ -10,18 +10,19 @@ function Input({
   placeholder, 
   validationError,
   onInputChange = () => {}
-}) {
+}){
   return (
     <div className="input-wrapper">
       <label className="label" forhtml={id}>{label}</label>
       <input 
-      onChange = {event => { onInputChange(event.target.value)} }
-      className="input" 
-      placeholder={placeholder} 
-      name={name}
-      // value={value} 
-      type={type} 
-      id={id} />
+        onChange = {event => { onInputChange(event.target.value)} }
+        className="input" 
+        placeholder={placeholder} 
+        name={name}
+        // value={value} 
+        type={type} 
+        id={id} 
+      />
       {validationError && <p className="label label-error">{validationError}</p>}
     </div>
   );

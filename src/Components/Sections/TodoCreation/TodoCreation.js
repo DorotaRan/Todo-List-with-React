@@ -20,6 +20,8 @@ function TodoCreation({ addNewTask }) {
         const newTodoUrl = inputs[4].value;
     
         let isFormInvalid = false;
+        let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
+        let regex = new RegExp(expression);
     
         if (newTodoTitle.length < 5) {
             setTitleValidationLabel('Provide a longer title! (min. 5)')
@@ -39,8 +41,6 @@ function TodoCreation({ addNewTask }) {
         } else {
             setAuthValidationLabel('');
         }
-        var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
-        var regex = new RegExp(expression);
         if (!newTodoUrl.match(regex)) {
         setUrlValidationLabel('the url should have the following format: http://www.gazeta.pl')
         isFormInvalid = true;
@@ -53,19 +53,19 @@ function TodoCreation({ addNewTask }) {
         const todo = {
             title: newTodoTitle,
             description: newTodoDesc,
-            priority: newTodoPrior ? newTodoPrior : '0',
+            priority: newTodoPrior ? newTodoPrior : '1',
             author: newTodoAuth,
             url: newTodoUrl,
-          }
+        }
         addNewTask(todo);
         
         for (const input of inputs) {
             input.value = "";
         }
-      }
+    }
 
     return (
-        <section className="input-side"> 
+        <section className="input-aside"> 
             <form onSubmit={onFormSubmit}>
                 <h2>Create a task</h2>
                 <Input
@@ -88,6 +88,8 @@ function TodoCreation({ addNewTask }) {
                     id="taskPriority" 
                     name="taskPriority" 
                     type= "number"
+                    min={1}
+                    max={3}
                 />
                 <Input 
                     placeholder="Dorota" 

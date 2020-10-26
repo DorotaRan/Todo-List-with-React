@@ -12,35 +12,35 @@ body {
 }
 
 .container {
-    width: 96%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  width: 96%;
+  margin: 0 auto;
+  text-align:  center;
 }
 
 @media (min-width: 768px){
   .container {
-    width: 720px;
-  }
-}
-
-@media (min-width: 960px){
-  .container {
-    width: 960px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 30px;
   font-weight: 500;
   color: #ffce00;
   margin: 20px;
-  text-align: left;
+  text-align: center;
+}
+
+@media (min-width: 1024px){
+  h1 {
+    text-align: left;
+  }
 }
 
 h2 {
-  font-size : 20px;
+  font-size : 24px;
   font-weight: 500;
   margin-bottom: 25px;
   margin-top: 20px;
