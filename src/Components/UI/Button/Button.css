@@ -8,15 +8,24 @@
   
   .btn-delete {
     background-color: #d35d5d;
-    color: white;
+    color: #c0ccd4;
   }
-  
+
+  .btn-delete:focus {
+    background-color: #a02f2f;
+  }
+    
   .btn-add {
-    background-color: #78d384;
+    background-color: #c0ccd4;
+    color:  #484d5c;
+  }
+
+  .btn-add:focus {
+    background-color:#788186;
   }
   
   .btn-large {
-    padding: 15px 30px; 
+    padding: 10px 30px; 
     border-radius: 40px;
   }
   

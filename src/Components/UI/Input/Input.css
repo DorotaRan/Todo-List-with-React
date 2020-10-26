@@ -1,15 +1,23 @@
+.input-wrapper {
+  margin-bottom: 10px;
+}
+
 .label {
     font-size: 10px;
     font-weight: 300;
-    color: black;
+    color: #c0ccd4;
     display: block;
-  }
+}
   
-  .input {
-    display: block;
-  }
-  
-  .label-error {
-    color: var(--red);
-  }
+.input {
+  display: block;
+  margin : 10px;
+  padding: 5px;
+  font-size: 10px;
+  border-radius: 5px;
+}
+
+.label-error {
+  color: var(--red);
+}
   

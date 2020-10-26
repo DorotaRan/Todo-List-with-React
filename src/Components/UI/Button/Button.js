@@ -17,7 +17,13 @@ function Button({ label, type, callbackFn, size, variant }) {
   }
  
   return (
-    <button className={btnClassName} type={type} onClick={callbackFn}>{label}</button>
+    <button 
+      className={btnClassName} 
+      type={type} 
+      onClick={callbackFn}
+    >
+      {label}
+    </button>
   );
 }
 
