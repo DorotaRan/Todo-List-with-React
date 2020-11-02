@@ -1,0 +1,18 @@
+.input-wrapper {
+    margin-bottom: 10px;
+}
+  
+.label {
+    font-size: 16px;
+    font-weight: 300;
+    color: #c0ccd4;
+    display: block;
+}
+
+.select {
+    display: block;
+    margin : 10px;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 5px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from '../../UI/Button/Button';
 import Input from '../../UI/Input/Input';
+import Select from '../../UI/Select/Select';
 import './TodoCreation.css';
 
 function TodoCreation({ addNewTask }) {
@@ -16,7 +17,7 @@ function TodoCreation({ addNewTask }) {
         const newTodoTitle = inputs[0].value;
         const newTodoDesc = inputs[1].value;
         const newTodoPrior = inputs[2].value;
-        const newTodoAuth = inputs[3].value;
+        const newTodoAuth = inputs[3].value.charAt(0).toUpperCase() + inputs[3].value.slice(1);
         const newTodoUrl = inputs[4].value;
     
         let isFormInvalid = false;
@@ -53,7 +54,7 @@ function TodoCreation({ addNewTask }) {
         const todo = {
             title: newTodoTitle,
             description: newTodoDesc,
-            priority: newTodoPrior ? newTodoPrior : '1',
+            priority: newTodoPrior ? newTodoPrior : "1",
             author: newTodoAuth,
             url: newTodoUrl,
         }
@@ -82,15 +83,12 @@ function TodoCreation({ addNewTask }) {
                     name="taskDesc" 
                     validationError={descValidationLabel}
                 />
-                <Input 
-                    placeholder="0" 
-                    label="Provide a task priority" 
+                <Select
+                    label="Select a task priority" 
                     id="taskPriority" 
-                    name="taskPriority" 
-                    type= "number"
-                    min={1}
-                    max={3}
+                    name="taskPriority"
                 />
+
                 <Input 
                     placeholder="Dorota" 
                     label="Provide a task author" 

@@ -2,22 +2,36 @@ import React from 'react';
 import Button from '../../UI/Button/Button';
 import './TodoList.css';
 
-function TodoList({todos, onTodoDelete}) {
+function TodoList({todos, onTodoDelete, onTodoToggle}) {
   return (
     <section className="todo-aside"> 
       <h2>List of tasks:</h2>
-      {todos.map(todo => {
-        let todoClassName = " todo"
-        if (todo.priority === 1) {
-          todoClassName = todoClassName + " todo-prior-medium";
-        } else if (todo.priority === 2) {
-          todoClassName = todoClassName + " todo-prior-high";
+      {todos
+      .sort((a,b) => b.priority - a.priority)
+      .map(todo => {
+        let todoClassName = "todo";
+
+        if(todo.priority === "2") {
+          todoClassName += " todo-prior-medium";
+          console.log(todo.priority)
+        } else if(todo.priority === "3") {
+          todoClassName += " todo-prior-high";
+          console.log(todo.priority)
         }
+        if(!todo.extra) {
+          todoClassName +=  " todo-done";
+        }
+
         return (
-          <div className={todoClassName} key={todo.id}>
-            <div>
-              <h3>Title: {todo.title}</h3>
-              <p>Description: {todo.description}</p>
+          <div className="todo" key={todo.id}>
+            <div className="todo-list-section">
+              <input 
+                type="checkbox" 
+                className="todo-checkbox" 
+                callbackFn={() => onTodoToggle(todo)}
+              /> 
+              <h3>Title:{todo.title}</h3>
+              <p>Desc: {todo.description}</p>
               <p>Author: {todo.author}</p>
               <p>URL: {todo.url}</p>
             </div>
@@ -30,10 +44,12 @@ function TodoList({todos, onTodoDelete}) {
               />
               <Button
                 label="Edit"
-                // callbackFn={() => {onTodoDelete(todo.id)}}
+                callbackFn={() => {onTodoDelete(todo.id)}}
                 variant="edit"
                 size={1}
               />
+              
+              
             </div>
           </div>
         )

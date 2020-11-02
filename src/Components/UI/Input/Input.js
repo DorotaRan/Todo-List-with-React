@@ -5,10 +5,11 @@ function Input({
   label, 
   id, 
   name,
-  // value = "", 
+  value = "", 
   type = 'text', 
   placeholder, 
   validationError,
+  callbackFn,
   onInputChange = () => {}
 }){
   return (
@@ -16,10 +17,11 @@ function Input({
       <label className="label" forhtml={id}>{label}</label>
       <input 
         onChange = {event => { onInputChange(event.target.value)} }
+        onClick={callbackFn}
         className="input" 
         placeholder={placeholder} 
         name={name}
-        // value={value} 
+        value={value} 
         type={type} 
         id={id} 
       />
