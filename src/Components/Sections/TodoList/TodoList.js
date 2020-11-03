@@ -1,8 +1,9 @@
 import React from 'react';
 import Button from '../../UI/Button/Button';
+import Checkbox from '../../UI/Checkbox/Checkbox';
 import './TodoList.css';
 
-function TodoList({todos, onTodoDelete, onTodoToggle}) {
+function TodoList({todos, onTodoDelete, onTodoEdit, onTodoToggle}) {
   return (
     <section className="todo-aside"> 
       <h2>List of tasks:</h2>
@@ -25,11 +26,6 @@ function TodoList({todos, onTodoDelete, onTodoToggle}) {
         return (
           <div className="todo" key={todo.id}>
             <div className="todo-list-section">
-              <input 
-                type="checkbox" 
-                className="todo-checkbox" 
-                callbackFn={() => onTodoToggle(todo)}
-              /> 
               <h3>Title:{todo.title}</h3>
               <p>Desc: {todo.description}</p>
               <p>Author: {todo.author}</p>
@@ -44,12 +40,15 @@ function TodoList({todos, onTodoDelete, onTodoToggle}) {
               />
               <Button
                 label="Edit"
-                callbackFn={() => {onTodoDelete(todo.id)}}
+                callbackFn={() => {onTodoEdit(todo)}}
                 variant="edit"
                 size={1}
               />
-              
-              
+              <Checkbox 
+                type="checkbox" 
+                className="checkbox" 
+                callbackFn={() => onTodoToggle(todo)}
+              /> 
             </div>
           </div>
         )

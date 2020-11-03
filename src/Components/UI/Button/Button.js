@@ -14,6 +14,8 @@ function Button({ label, type, callbackFn, size, variant }) {
     btnClassName = btnClassName + ' btn-delete';
   } else if (variant === 'add') {
     btnClassName = btnClassName + ' btn-add';
+  } else if (variant === 'edit') {
+    btnClassName = btnClassName + ' btn-edit';
   }
  
   return (

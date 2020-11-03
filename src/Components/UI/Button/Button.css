@@ -4,10 +4,10 @@
   border: 0;
   padding: 10px 30px;
   text-transform: lowercase;
-  background-color: #ffce00;
   height: 50px;
   width: 100px;
   font-size: 16px;
+  cursor: pointer;
 }
 
 .btn-delete {
@@ -30,7 +30,8 @@
 }
 
 .btn-edit {
-  color:  #484d5c;
+  background-color:  #ffce00;
+  color: #484d5c
 }
 
 .btn-edit:focus {

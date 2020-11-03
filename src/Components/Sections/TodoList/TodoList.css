@@ -53,12 +53,6 @@
     margin-bottom: 10px;
 }
 
-.todo-checkbox {
-    align-items: start;
-    width: 25px;
-    height: 25px;
-}
-
 .todo-input-form {
     display: flex;
     flex-direction: row;

@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { getTodos, deleteTodo, addTodo, updateTodo } from './Requests';
 import './App.css';
 import TodoList from './Components/Sections/TodoList/TodoList';
-import TodoCreation from './Components/Sections/TodoCreation/TodoCreation';
+import TodoForm from './Components/Sections/TodoForm/TodoForm';
+import Modal from './Components/UI/Modal/Modal';
 
 function App() {
   const [todos, updateTodos] = useState([]);
+  const [editedTodo, setEditedTodo] = useState(false);
   const [error, setRequestError]= useState(false);
 
   useEffect(() => {
@@ -31,7 +33,7 @@ function App() {
     })
   }
 
-  const addNewTask = todo => {
+  const onTodoAdd = todo => {
     addTodo(todo).then(() => {
       getAndRenderTodos();
     }).catch(error => {
@@ -40,35 +42,57 @@ function App() {
     })
   }
 
-  const onTodoToggle = todo =>{
-    let todoEdited = JSON.parse(JSON.stringify(todo));
-    if(!todoEdited.extra) {
-      todoEdited.extra = 1
-    } else {
-      todoEdited.extra = null;
-    }
-    updateTodo(todo.id, todoEdited)
-    .then(() =>{
+  const onTodoEdit = todo => {
+    updateTodo(todo).then (() => {
       getAndRenderTodos();
-    })
-    .catch((error)=> {
-      setRequestError(error);
-      alert('connection error')
+      setEditedTodo(false)
     })
   }
+
+  const openEditModal = todo => {
+    setEditedTodo(todo)
+  }
+
+  // const onTodoToggle = todo => {
+  //   let todoEdited = JSON.parse(JSON.stringify(todo));
+  //   if(!todo.extra) {
+  //     todoEdited.extra = 1
+  //   } else {
+  //     todoEdited.extra = null;
+  //   }
+  //   updateTodo(todo.id, todoEdited)
+  //   .then(() =>{
+  //     getAndRenderTodos();
+  //   })
+  //   .catch((error)=> {
+  //     setRequestError(error);
+  //     alert('connection error')
+  //   })
+  // }
 
   return (
     <main>
       <h1>Todo List</h1>
-      <div className="container">
+      <div className='container'>
         { error && (<p>I  was not able to download the data this time. Please try again later.</p>) }
         { !error && (
           <>
-            <TodoCreation addNewTask={addNewTask}></TodoCreation>
-            <TodoList todos={todos} onTodoDelete={onTodoDelete} onTodoToggle={onTodoToggle}></TodoList>
+            <TodoForm onFormSubmitCallback={onTodoAdd}></TodoForm>
+            <TodoList 
+            todos={todos} 
+            onTodoDelete={onTodoDelete} 
+            // onTodoToggle={onTodoToggle} 
+            onTodoEdit={openEditModal}/>
           </>
         )}
+        {editedTodo && (
+          <Modal>
+            <TodoForm onFormSubmitCallback={onTodoEdit} isFormEdited todo={editedTodo} />
+          </Modal>
+        )}
       </div>
+      
+      
     </main>
   )
 }
