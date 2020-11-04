@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getTodos, deleteTodo, addTodo, updateTodo } from './Requests';
+import { getTodos, deleteTodo, addTodo, updateTodo, editTodo} from './Requests';
 import './App.css';
 import TodoList from './Components/Sections/TodoList/TodoList';
 import TodoForm from './Components/Sections/TodoForm/TodoForm';
 import Modal from './Components/UI/Modal/Modal';
-import { faSpinner} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,8 +14,7 @@ function App() {
   const [todos, updateTodos] = useState([]);
   const [editedTodo, setEditedTodo] = useState(false);
   const [error, setRequestError]= useState(false);
-  const [loading, setLoading] = useState(true)
-      
+
   useEffect(() => {
     getAndRenderTodos()
   }, [])
@@ -25,7 +22,6 @@ function App() {
   const getAndRenderTodos = () => {
     getTodos().then(response => {
       const { data } = response;
-      setLoading(loading);
       updateTodos(data.reverse())
     }).catch(error => {
       setRequestError(error)
@@ -35,7 +31,6 @@ function App() {
 
   const onTodoDelete = id => {
     deleteTodo(id).then(() => {
-      setLoading(loading);
       getAndRenderTodos();
     }).catch(error => {
       setRequestError(error)
@@ -45,7 +40,6 @@ function App() {
 
   const onTodoAdd = todo => {
     addTodo(todo).then(() => {
-      setLoading(loading);
       getAndRenderTodos();
     }).catch(error => {
       setRequestError(error)
@@ -55,10 +49,10 @@ function App() {
   }
 
   const onTodoEdit = todo => {
-    updateTodo(todo).then (() => {
-      setLoading(loading);
+    editTodo(todo).then (() => {
+      setEditedTodo(false);
       getAndRenderTodos();
-      setEditedTodo(false)
+
     }).catch(error => {
       setRequestError(error)
       alert('connection error')
@@ -70,22 +64,38 @@ function App() {
   }
 
   const onTodoToggle = todo => {
-    console.log('klik')
     let todoEdited = JSON.parse(JSON.stringify(todo));
-
     if(!todo.extra) {
       todoEdited.extra = 1;
     } else {
       todoEdited.extra = null;
     }
-
     updateTodo(todo.id, todoEdited).then(() => {
-      getAndRenderTodos();
+      getAndRenderTodos()
     })
     .catch((error)=> {
       setRequestError(error);
       alert('connection error')
     })
+  }
+
+  const [isLoading, setLoading] = useState(true)
+   
+  function fakeRequest() {
+    return new Promise(resolve => setTimeout(() => resolve(), 2500));
+  }
+  useEffect(() => {
+    fakeRequest().then(() => {
+      const element = document.querySelector(".loader-container");
+      if (element) {
+        element.remove();
+        setLoading(!isLoading);
+      }
+    });
+  }, []);
+
+  if (isLoading) {
+    return null;
   }
 
   return (
@@ -95,17 +105,17 @@ function App() {
           <h1>Todo List</h1>
           <div className='container'>
             <Switch>
-              <Route exact path ="/">
-                { loading && <FontAwesomeIcon icon={faSpinner} spin /> }
+              <Route exact path ='/'>
                 { error && (<p>I  was not able to download the data this time. Please try again later.</p>) }
                 { !error && (
                 <>
                   <TodoForm onFormSubmitCallback={onTodoAdd}></TodoForm>
                   <TodoList 
-                  todos={todos} 
-                  onTodoDelete={onTodoDelete} 
-                  onTodoToggle={onTodoToggle} 
-                  onTodoEdit={openEditModal}/>
+                    todos={todos} 
+                    onTodoDelete={onTodoDelete} 
+                    onTodoToggle={onTodoToggle} 
+                    onTodoEdit={openEditModal}
+                  />
                 </>
                 )}
                 {editedTodo && (

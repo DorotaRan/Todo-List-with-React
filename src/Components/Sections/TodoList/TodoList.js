@@ -15,44 +15,43 @@ function TodoList({todos, onTodoDelete, onTodoEdit, onTodoToggle}) {
       .sort((a,b) => b.priority - a.priority)
       .map(todo => {
         let todoClassName = 'todo';
-
-        if(todo.priority === 1) {
-          todoClassName = todoClassName + ' todo-prior-medium';
-        } else if(todo.priority === 3) {
-          todoClassName = todoClassName + ' todo-prior-high';
-        } 
-
-        if(todo.extra) {
+        console.log(todo.extra)
+        if (todo.extra) {
           todoClassName = todoClassName + ' todo-done';
         }
+
+        if (todo.priority === 1) {
+          todoClassName = todoClassName + ' todo-prior-medium';
+        } else if (todo.priority === 3) {
+          todoClassName = todoClassName + ' todo-prior-high';
+        } 
+       
 
         return (
           <div className={todoClassName} key={todo.id}>
             <div className='todo-list-section'>
-              <h3>Title:{todo.title}</h3>
-              <p>Desc: {todo.description}</p>
-              <p>Author: {todo.author}</p>
-              <p>URL: {todo.url}</p>
+              <h3>Title:  {todo.title}</h3>
+              <p>Desc:  {todo.description}</p>
+              <p>Author:  {todo.author}</p>
+              <p>URL:  {todo.url}</p>
             </div>
             <div className='delete-edit-btn-section'>
               <Button
-                label={<FontAwesomeIcon icon={faTrashAlt} />} 
-                callbackFn={() => {onTodoDelete(todo.id)}}
+                label={ <FontAwesomeIcon icon={faTrashAlt} /> } 
+                callbackFn={ () => {onTodoDelete(todo.id)} }
                 variant='delete'
-                size={1}
               />
               <Button
-                label={<FontAwesomeIcon icon={faEdit} />} 
-                callbackFn={() => {onTodoEdit(todo)}}
+                label={ <FontAwesomeIcon icon={faEdit} /> } 
+                callbackFn={ () => {onTodoEdit(todo)} }
                 variant='edit'
-                size={1}
               />
               <Button
-                label={<FontAwesomeIcon icon={faCheck} />} 
+                label={ <FontAwesomeIcon icon={faCheck} /> } 
                 type='check' 
                 className='check' 
-                variant="check"
-                callbackFn={() => onTodoToggle(todo)}
+                variant='check'
+                callbackFn={() => {onTodoToggle(todo)}}
               /> 
             </div>
           </div>

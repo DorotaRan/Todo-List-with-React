@@ -11,14 +11,13 @@ function Input({
   validationError,
 }) {
   const [ inputValue, updateValue ] = useState(value)
-
   const onInputChange = event => { updateValue(event.target.value) } 
 
   return (
-    <div className="input-wrapper">
-      <label className="label" forhtml={id}>{label}</label>
+    <div className='input-wrapper'>
+      <label className='label' forhtml={id}>{label} </label>
       <input
-        className="input"
+        className='input'
         placeholder={placeholder}
         name={name}
         value={inputValue}
@@ -26,7 +25,7 @@ function Input({
         type={type}
         id={id}
       />
-      {validationError && <p className="label label-error">{validationError}</p>}
+      {validationError && <p className='label-error'>{validationError}</p>}
     </div>
   );
 }

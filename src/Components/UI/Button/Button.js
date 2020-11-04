@@ -1,7 +1,7 @@
 import React from 'react';
 import './Button.css';
 
-function Button({ label, type, callbackFn, size, variant }) {
+function Button({ label, type, callbackFn, variant }) {
   let btnClassName = 'btn';
   
   if (variant === 'delete') {

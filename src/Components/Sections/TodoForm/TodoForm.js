@@ -5,7 +5,7 @@ import Select from '../../UI/Select/Select';
 import './TodoForm.css';
 
 function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
-    const [titleValidationLabel, setTitleValidationLabel] = useState('');
+    const [titleValidationLabel, setTitleValidationLabel] = useState(''); 
     const [descValidationLabel, setDescValidationLabel] = useState('');
     const [authValidationLabel, setAuthValidationLabel] = useState('');
     const [urlValidationLabel, setUrlValidationLabel] = useState('');
@@ -13,7 +13,7 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
     const onFormSubmit = event => {
         event.preventDefault();
     
-        const { elements: inputs } = event.target;
+        const inputs = event.target.elements;
         const newTodoTitle = inputs[0].value;
         const newTodoDesc = inputs[1].value;
         const newTodoPrior = inputs[2].value;
@@ -21,28 +21,29 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
         const newTodoUrl = inputs[4].value;
     
         let isFormInvalid = false;
-        let expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
-        let regex = new RegExp(expression);
-    
-        if (newTodoTitle.length < 5) {
-            setTitleValidationLabel('Provide a longer title! (min. 5)')
+        let expressionHtml = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi
+        let regexHtml = new RegExp(expressionHtml);
+        let regexLetters = new RegExp('^[a-zA-Z0-9 ]+$')
+
+        if (newTodoTitle.length < 5 || !newTodoTitle.match(regexLetters)) {
+            setTitleValidationLabel('Provide a longer title (min. 5) with no Polish or special characters!')
             isFormInvalid = true;
         } else {
             setTitleValidationLabel('');
         }
-        if (newTodoDesc.length < 5) {
-            setDescValidationLabel('Provide a longer description! (min. 5)')
+        if (newTodoDesc.length < 5 || !newTodoDesc.match(regexLetters)) {
+            setDescValidationLabel('Provide a longer description (min. 5) with no Polish or special characters!')
             isFormInvalid = true;
         } else {
             setDescValidationLabel('');
         }
-        if (newTodoAuth.length < 3  ) {
-            setAuthValidationLabel('Provide a longer name! (min. 3)')
+        if (newTodoAuth.length < 3  || !newTodoAuth.match(regexLetters)) {
+            setAuthValidationLabel('Provide a longer name (min. 3) with no Polish or special characters!')
             isFormInvalid = true;
         } else {
             setAuthValidationLabel('');
         }
-        if (!newTodoUrl.match(regex)) {
+        if (!newTodoUrl.match(regexHtml)) {
         setUrlValidationLabel('the url should have the following format: http://www.gazeta.pl')
         isFormInvalid = true;
         } else {
@@ -50,6 +51,10 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
         }
     
         if (isFormInvalid) return;
+
+        for (const input of inputs) {
+            input.value = '';
+        }
 
         const todoObject = {
             title: newTodoTitle,
@@ -62,18 +67,14 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
         if (isFormEdited) {
             todoObject.id = todo.id;
         }
-
-        onFormSubmitCallback(todoObject);
         
-        for (const input of inputs) {
-            input.value = '';
-        }
+        onFormSubmitCallback(todoObject);
     }
 
     return (
         <section className='input-aside'> 
             <form onSubmit={onFormSubmit}>
-                <h2>{isFormEdited ? 'Edit task' : 'Create a task' } </h2>
+                <h2> {isFormEdited ? 'Edit task' : 'Create a task' } </h2>
                 <Input
                     placeholder='Go out with a dog'
                     label='Provide a task name'
@@ -96,7 +97,6 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
                     name='taskPriority'
                     value={todo.priority}
                 />
-
                 <Input 
                     placeholder='Dorota' 
                     label='Provide a task author' 
@@ -117,7 +117,6 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
                 <Button 
                     variant='add' 
                     type='submit' 
-                    size={2} 
                     label={isFormEdited ? 'SAVE' : 'ADD'} 
                 />
             </form>

@@ -1,10 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Grandstander:wght@100;300;500&display=swap');
 
 
-:root {
-  --red: #d35d5d;
-}
-
 body {
   font-family: 'Grandstander', cursive;
   background-color: #484d5c;
@@ -40,4 +36,5 @@ h2 {
   margin-top: 5px;
   color: #ffce00;
 }
+
 

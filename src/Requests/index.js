@@ -12,6 +12,10 @@ export const addTodo = todo => {
   return axios.post('http://51.75.120.145:3000/todo', todo);
 }
 
-export const updateTodo = todo => {
-    return axios.put(`http://51.75.120.145:3000/todo/${todo.id}`, todo)
+export const updateTodo = (id, todo) => {
+  return axios.put(`http://51.75.120.145:3000/todo/${id}`, todo);
+}
+
+export const editTodo = (todo) => {
+  return axios.put(`http://51.75.120.145:3000/todo/${todo.id}`, todo);
 }

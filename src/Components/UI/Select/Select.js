@@ -5,10 +5,10 @@ function Select({
   label, 
   id, 
   onInputChange = () => {}
-}){
+}) {
   return (
     <div className='select-wrapper'>
-      <label className='label' forhtml={id}>{label}</label>
+      <label className='label' forhtml={id}> {label} </label>
       <select className='select' id={id} label={label}>
         <option value='1'>Low</option> 
         <option value='2'>Medium</option> 

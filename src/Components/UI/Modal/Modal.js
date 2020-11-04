@@ -3,9 +3,9 @@ import './Modal.css';
 
 function Modal({ children}) {
   return (
-    <modal className="modal">
-        {children}
-    </modal> 
+    <div className='modal'>
+      {children}
+    </div> 
   );
 }
 
