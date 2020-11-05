@@ -2,14 +2,14 @@
 
 
 body {
-  font-family: 'Grandstander', cursive;
   background-color: #484d5c;
   color: #c0ccd4;
+  font-family: 'Grandstander', cursive;
 }
 
 .container {
-  width: 96%;
   margin: 0 auto;
+  width: 96%;
   text-align:  center;
 }
 
@@ -22,19 +22,19 @@ body {
 }
 
 h1 {
+  margin: 20px 0 0 20px;
+  color: #ffce00;
   font-size: 30px;
   font-weight: 500;
-  color: #ffce00;
-  margin: 20px 0 0 20px;
   text-align: center;
 }
 
 h2 {
-  font-size : 24px;
-  font-weight: 500;
   margin-bottom: 25px;
   margin-top: 5px;
   color: #ffce00;
+  font-size : 24px;
+  font-weight: 500;
 }
 
 

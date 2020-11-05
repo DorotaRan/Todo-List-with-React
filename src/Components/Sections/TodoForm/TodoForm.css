@@ -1,18 +1,18 @@
 .input-aside {
-    text-align: left;
     width: 96%;
-    justify-content: center;
     margin: 0 auto;
+    justify-content: center;
+    text-align: left;
 }
 
 @media (min-width: 768px){
     .input-aside {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        align-items: left;
         width: 40%;
         margin: 2%;
+        justify-content: space-between;
+        align-items: left;
     }
 }
 

@@ -1,16 +1,16 @@
 .todo-aside {
     display: flex;
     flex-direction: column;
-    text-align: left;
     width: 96%;
     margin: 0 auto;
+    text-align: left;
 }
 
 .todo {
     padding: 7px;
     border-radius: 15px;
-    margin-bottom: 10px;
     border: 1px solid blue;
+    margin-bottom: 10px;
 }
 
 .todo-prior-medium {
@@ -30,26 +30,26 @@
 }
 
 .todo-list-section {
-    text-align: justify;
     width: 100%;
+    text-align: justify;
 }
 
 .delete-edit-btn-section {
     display: flex;
-    justify-content: center;
     width: 100%;
+    justify-content: center;
 }
 
 .todo h3 {
+    margin: 10px 0 10px 0;
     font-size : 16px;
     font-weight: 500;
-    margin: 10px 0 10px 0;
 }
 
 .todo p {
+    margin-bottom: 10px;
     font-size : 16px;
     font-weight: 300;
-    margin-bottom: 10px;
 }
 
 .todo-input-form {
@@ -74,8 +74,8 @@
     }
 
     .delete-edit-btn-section {
-        width: 50%;
         display: flex;
+        width: 50%;
         justify-content: space-between;
     }
 }

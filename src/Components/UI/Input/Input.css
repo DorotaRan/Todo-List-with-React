@@ -3,10 +3,10 @@
 }
 
 .label {
+  display: block;
+  color: #c0ccd4;
   font-size: 16px;
   font-weight: 300;
-  color: #c0ccd4;
-  display: block;
 }
 
 .label-error {
@@ -15,10 +15,10 @@
   
 .input {
   display: block;
-  margin : 10px;
   padding: 5px;
-  font-size: 16px;
   border-radius: 5px;
+  margin : 10px;
+  font-size: 16px;
 }
 
 

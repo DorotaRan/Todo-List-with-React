@@ -52,10 +52,6 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
     
         if (isFormInvalid) return;
 
-        for (const input of inputs) {
-            input.value = '';
-        }
-
         const todoObject = {
             title: newTodoTitle,
             description: newTodoDesc,
@@ -69,6 +65,10 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
         }
         
         onFormSubmitCallback(todoObject);
+
+        for (const input of inputs) {
+            input.value = '';
+        }
     }
 
     return (
@@ -76,7 +76,7 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
             <form onSubmit={onFormSubmit}>
                 <h2> {isFormEdited ? 'Edit task' : 'Create a task' } </h2>
                 <Input
-                    placeholder='Go out with a dog'
+                    placeholder=''
                     label='Provide a task name'
                     id='taskTitle'
                     name='taskTitle'
@@ -84,7 +84,7 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
                     value={todo.title}
                 />
                 <Input 
-                    placeholder='Do it after it eats' 
+                    placeholder='' 
                     label='Provide a task description' 
                     id='taskDesc' 
                     name='taskDesc' 
@@ -98,7 +98,7 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
                     value={todo.priority}
                 />
                 <Input 
-                    placeholder='Dorota' 
+                    placeholder='' 
                     label='Provide a task author' 
                     id='taskAuthor' 
                     name='taskAuthor' 
@@ -106,7 +106,7 @@ function TodoForm({ onFormSubmitCallback, isFormEdited, todo={} }) {
                     value={todo.author}
                 />
                 <Input 
-                    placeholder='https://www.gazeta.pl/0,0.html' 
+                    placeholder='' 
                     label='Provide a task url' 
                     id='taskUrl' 
                     name='taskUrl' 

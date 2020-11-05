@@ -1,13 +1,13 @@
 .btn {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  border: 0;
-  padding: 10px 30px;
-  text-transform: lowercase;
   height: 50px;
   width: 100px;
+  padding: 10px 30px;
+  border-radius: 10px;
+  border: 0;
+  align-items: center;
+  justify-content: center;
+  text-transform: lowercase;
   font-size: 20px;
   cursor: pointer;
 }
@@ -27,9 +27,9 @@
 }
 
 .btn-delete {
+  margin-right: 2%;
   background-color: #d35d5d;
   color: #c0ccd4;
-  margin-right: 2%;
 }
 
 .btn-delete:focus {
@@ -37,9 +37,9 @@
 }
 
 .btn-edit {
+  margin-right: 2%;
   background-color:  #ffce00;
   color: #484d5c;
-  margin-right: 2%;
 }
 
 .btn-edit:focus {
@@ -47,9 +47,9 @@
 }
 
 .btn-check{
+  border: 1px solid #ffce00;
   background-color: #484d5c;
   color: #ffce00;
-  border: 1px solid #ffce00;
 }
 
 @media (min-width: 1024px){
