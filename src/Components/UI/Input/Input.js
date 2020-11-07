@@ -10,8 +10,6 @@ function Input({
   placeholder,
   validationError,
 }) {
-  const [ inputValue, updateValue ] = useState(value)
-  const onInputChange = event => { updateValue(event.target.value) } 
 
   return (
     <div className='input-wrapper'>
@@ -20,8 +18,7 @@ function Input({
         className='input'
         placeholder={placeholder}
         name={name}
-        value={inputValue}
-        onChange={onInputChange}
+        defaultValue={value}
         type={type}
         id={id}
       />
